@@ -5,30 +5,14 @@ var mysql = require('mysql');
 // and to the database "chat".
 
 
-module.exports.runQuery = function(queryString, callback) {
-  var connection = mysql.createConnection({
-    user: "root",
-    password: "",
-    database: "chat"
-  });
 
-  connection.connect();
+var connection = mysql.createConnection({
+  user: "root",
+  password: "",
+  database: "chat"
+});
 
-  connection.query(queryString, function(err, rows, fields) {
-    if (err) throw err;
-    callback(rows, fields);
-    connection.end(); // ??
-  });
-};
+connection.connect();
 
-module.exports.getUsername = function(userID, callback) {
-  module.exports.runQuery("SELECT username FROM users WHERE userID="+userID, function(rows, fields){
-    callback(rows[0]);
-  });
-};
+module.exports = connection;
 
-module.exports.getRoomname = function(roomID, callback) {
-  module.exports.runQuery("SELECT roomname FROM room WHERE roomID="+roomID, function(rows, fields){
-    callback(rows[0]);
-  });
-};
