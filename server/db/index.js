@@ -5,3 +5,18 @@ var mysql = require('mysql');
 // and to the database "chat".
 
 
+module.exports.runQuery = function(queryString, callback) {
+  var connection = mysql.createConnection({
+    user: "root",
+    password: "",
+    database: "chat"
+  });
+
+  connection.connect();
+
+  connection.query(queryString, function(err, rows, fields) {
+    if (err) throw error;
+    callback(rows, fields);
+    connection.end(); // ??
+  });
+};
