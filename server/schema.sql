@@ -1,10 +1,10 @@
-CREATE DATABASE chat;
+CREATE DATABASE IF NOT EXISTS chat;
 
 USE chat;
 
 CREATE TABLE messages (
   userID int(5),
-  roomname VARCHAR(30),
+  roomID int(5),
   createdAt TIMESTAMP(6),
   -- updatedAt TIMESTAMP(6),
   text TEXT,
