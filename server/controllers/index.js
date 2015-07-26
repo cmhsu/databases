@@ -8,18 +8,18 @@ var utils = require('../utils.js');
 module.exports = {
   messages: {
     get: function (req, res) {
-      models.messages.get(function(results) {
+      models.messages.get(function(err, results) {
         res.json(results);
-        res.setStatus(200);
+        // res.setStatus(200);
         res.end();
       });
 
     }, // a function which handles a get request for all messages
     post: function (req, res) {
       var params = [req.body.text, req.body.username, req.body.roomname];
-      models.messages.post(params, function(results) {
+      models.messages.post(params, function(err, results) {
         res.json(results);
-        res.setStatus(201);
+        // res.setStatus(201);
         res.end();
       });
     } // a function which handles posting a message to the database
@@ -28,17 +28,20 @@ module.exports = {
   users: {
     // Ditto as above
     get: function (req, res) {
-      models.users.get(function(results) {
+      models.users.get(function(err, results) {
         res.json(results);
-        res.setStatus(200);
+        // res.sendStatus(200);
         res.end();
       });
     },
     post: function (req, res) {
       var params = [req.body.username];
-      models.users.post(params, function(results) {
+      models.users.post(params, function(err, results) {
+        if (err) {
+          console.log(err);
+        }
         res.json(results);
-        res.setStatus(201);
+        // res.sendStatus(201);
         res.end();
       });
     } 

@@ -3,17 +3,20 @@ CREATE DATABASE IF NOT EXISTS chat;
 USE chat;
 
 CREATE TABLE messages (
-  userid int NOT NULL,
-  roomname VARCHAR(30),
-  text TEXT NOT NULL,
-  id int NOT NULL auto_increment,
-  PRIMARY KEY (id)
+  /* Describe your table here.*/
+  id int NOT NULL AUTO_INCREMENT,
+  userid int,
+  text varchar(200),
+  roomname varchar(20),
+  PRIMARY KEY (ID)
 );
 
+/* Create other tables and define schemas for them here! */
+
 CREATE TABLE users (
-  username VARCHAR(30) NOT NULL,
-  id int NOT NULL auto_increment,
-  PRIMARY KEY (id)
+  id        int    NOT NULL AUTO_INCREMENT,
+  username  varchar(40),
+  PRIMARY KEY (ID)
 );
 
 
